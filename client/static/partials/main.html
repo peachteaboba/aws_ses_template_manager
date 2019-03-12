@@ -1,0 +1,78 @@
+<!------------------->
+<!-- Error Message -->
+<!------------------->
+<div class="error-message-wrapper" ng-if="error_message" xmlns="http://www.w3.org/1999/html">
+    <p>{{error_message}}</p>
+</div>
+<!------------------->
+<!-- Template List -->
+<!------------------->
+<div class="template-list-wrapper">
+    <div class="header">
+        <div class="title-wrapper">
+            <h1>{{templates.length}}</h1>
+            <p>Templates</p>
+        </div>
+        <div class="timestamp-wrapper">
+            <h1>Last Updated</h1>
+            <h2 ng-class="{'flash-green': flash_timestamp}">{{last_updated}}</h2>
+        </div>
+        <div class="reload" ng-click="reload_list()">
+            <img src="static/img/reload.svg" alt="reload">
+        </div>
+        <div class="reload create" ng-click="create()">
+            <img src="static/img/create.svg" alt="create">
+        </div>
+    </div>
+    <div class="body">
+        <div class="template-el" ng-repeat="template in templates track by $index"  ng-click="get(template.Name)">
+            <p ng-class="{'selected': template.Name === currentTemplate.TemplateName}">{{template.Name}}</p>
+            <div class="timestamp-wrapper">
+                <h1>Created At</h1>
+                <h2>{{template.timestamp}} - {{template.timestamp_ago}}</h2>
+            </div>
+            <div class="menu-wrapper">
+                <div class="menu-button" ng-click="delete(template.Name); $event.stopPropagation();">
+                    <img src="static/img/trash.svg" alt="trash">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!---------------------->
+<!-- Template Details -->
+<!---------------------->
+<div class="template-details-wrapper">
+    <div class="body" ng-if="currentTemplate.TemplateName">
+        <!-- TemplateName -->
+        <div class="name-wrapper">
+            <p>TemplateName: </p>
+            <h1>{{currentTemplate.TemplateName}}</h1>
+        </div>
+        <!-- SubjectPart -->
+        <div class="el-wrapper">
+            <label for="SubjectPart">SubjectPart: </label>
+            <input name="SubjectPart" id="SubjectPart" ng-model="currentTemplate.SubjectPart">
+        </div>
+        <!-- HtmlPart -->
+        <div class="el-wrapper">
+            <label for="HtmlPart">HtmlPart: </label>
+            <textarea id="HtmlPart" ng-model="currentTemplate.HtmlPart"></textarea>
+        </div>
+        <!-- TextPart -->
+        <div class="el-wrapper">
+            <label for="TextPart">TextPart: <span ng-click="update_text()">Pull from HTML</span></label>
+            <textarea id="TextPart" ng-model="currentTemplate.TextPart"></textarea>
+        </div>
+        <!-- Update -->
+        <div class="name-wrapper update">
+            <h1 ng-click="edit(); $event.stopPropagation();" ng-class="{green: cta_btn_txt === 'Success'}">{{cta_btn_txt}}</h1>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

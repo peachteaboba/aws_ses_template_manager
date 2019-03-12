@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <title>Template Manger</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <meta name="description" content="A tool for managing AWS SES templates">
+
+    <!-- frameworks -->
+    <script type="text/javascript" src="angular/angular.min.js"></script>
+    <script type="text/javascript" src="angular-route/angular-route.min.js"></script>
+    <script type="text/javascript" src="moment/moment.js"></script>
+
+    <!-- styles -->
+    <link href="https://fonts.googleapis.com/css?family=Rubik:400,500" rel="stylesheet">
+    <link rel='stylesheet' href='static/css/reset.css'>
+    <link rel='stylesheet' href='static/css/index.css'>
+    <link rel='stylesheet' href='static/css/mobile.css'>
+    <link rel="shortcut icon" href="static/img/fav.png">
+
+    <!-- js -->
+    <script type="text/javascript" src="static/js/config.js"></script>
+    <script type="text/javascript" src="static/js/factories.js"></script>
+    <script type="text/javascript" src="static/js/controllers/main.js"></script>
+
+</head>
+<body>
+<div ng-view=""></div>
+</body>
+</html>
