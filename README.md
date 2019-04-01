@@ -1,5 +1,6 @@
 # aws_ses_template_manager
-A simple UI interface for managing AWS Simple Email Service templates
+
+Currently AWS SES has a set of API endpoints to manipulate email templates, however, it lacks a front-end UI to perform such tasks. I've created a simple UI interface for managing AWS Simple Email Service templates. Enjoy :)
 
 ## Features
 * Basic CRUD API interactions with [SES Template API](https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/ses-examples-creating-template.html)
