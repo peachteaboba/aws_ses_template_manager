@@ -9,7 +9,7 @@ A simple UI interface for managing AWS Simple Email Service templates
 
 2) Open terminal in the project directory
 
-3) Install node_modules and bower_components
+3) Install `node_modules` and `bower_components`
 ```
 npm_install
 bower_install
@@ -20,9 +20,9 @@ bower_install
     - Fill in the `.env` file with your corresponding AWS IAM credentials
     (Note: the .env file is included in the `.gitignore` file for security purposes)
 
-5) Start the server (Note: You must have your IAM credentials properly set up in the `.env` file for the server to run)
+5) Start the server. (Note: You must have your IAM credentials properly set up in the `.env` file for the server to run) To start the server, while in the project's root directory, type the following command:
 ```
-npm start server.js
+nodemon
 ```
 6) Go to `localhost:9000` (enjoy!)
 
