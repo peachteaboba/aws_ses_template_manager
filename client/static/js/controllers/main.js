@@ -12,8 +12,8 @@ app.controller('mainController', ["$scope", "$window", "mainFactory", "$rootScop
     $scope.cta_btn_txt = "-";
 
     // List templates
-    $scope.reload_list = function() {
-        mainFactory.list_templates(function(response) {
+    $scope.reload_list = function () {
+        mainFactory.list_templates(function (response) {
             if (response.status === 200 && response.data) {
                 // Display error ........................................
                 // ......................................................
@@ -24,7 +24,7 @@ app.controller('mainController', ["$scope", "$window", "mainFactory", "$rootScop
                 // ......................................................
                 // ......................................................
                 $scope.templates = response.data.TemplatesMetadata;
-                $scope.templates.forEach(function(template) {
+                $scope.templates.forEach(function (template) {
                     template.timestamp = moment(template.CreatedTimestamp).format("dddd, MMMM Do YYYY, h:mm:ss a");
                     template.timestamp_ago = moment(template.CreatedTimestamp).fromNow();
                 });
@@ -32,7 +32,7 @@ app.controller('mainController', ["$scope", "$window", "mainFactory", "$rootScop
                 const now = new Date();
                 $scope.last_updated = moment(now).format("dddd, MMMM Do YYYY, h:mm:ss a");
                 $scope.flash_timestamp = true;
-                setTimeout(function() {
+                setTimeout(function () {
                     $scope.flash_timestamp = false;
                 }, 1000);
             }
@@ -40,10 +40,10 @@ app.controller('mainController', ["$scope", "$window", "mainFactory", "$rootScop
     };
     $scope.reload_list();
 
-    $scope.create = function() {
+    $scope.create = function () {
         let name = prompt("Enter Name (name cannot be changed once created): ", "");
         if (name && name.length > 0) {
-            mainFactory.create_template(name, function(response) {
+            mainFactory.create_template(name, function (response) {
                 if (response.status === 200 && response.data) {
                     $scope.reload_list();
                 }
@@ -51,10 +51,10 @@ app.controller('mainController', ["$scope", "$window", "mainFactory", "$rootScop
         }
     };
 
-    $scope.delete = function(name) {
+    $scope.delete = function (name) {
         let conf = prompt("Type 'delete' to confirm: ", "");
         if (conf && conf === 'delete') {
-            mainFactory.delete_template(name, function(response) {
+            mainFactory.delete_template(name, function (response) {
                 if (response.status === 200 && response.data) {
                     $scope.reload_list();
                 }
@@ -62,11 +62,11 @@ app.controller('mainController', ["$scope", "$window", "mainFactory", "$rootScop
         }
     };
 
-    $scope.edit = function() {
-        mainFactory.update_template($scope.currentTemplate, function(response) {
+    $scope.edit = function () {
+        mainFactory.update_template($scope.currentTemplate, function (response) {
             if (response.status === 200 && response.data) {
                 $scope.cta_btn_txt = "Success";
-                setTimeout(function() {
+                setTimeout(function () {
                     $scope.cta_btn_txt = "Update";
                     $scope.$apply();
                 }, 2000);
@@ -74,8 +74,8 @@ app.controller('mainController', ["$scope", "$window", "mainFactory", "$rootScop
         });
     };
 
-    $scope.get = function(name) {
-        mainFactory.get_template(name, function(response) {
+    $scope.get = function (name) {
+        mainFactory.get_template(name, function (response) {
             if (response.status === 200 && response.data && response.data.Template) {
                 $scope.currentTemplate = response.data.Template;
                 $scope.cta_btn_txt = "Update";
@@ -85,7 +85,7 @@ app.controller('mainController', ["$scope", "$window", "mainFactory", "$rootScop
         });
     };
 
-    $scope.update_text = function() {
+    $scope.update_text = function () {
         let clean = $scope.currentTemplate.HtmlPart;
 
         // Remove contents between style tag .............................
@@ -103,28 +103,19 @@ app.controller('mainController', ["$scope", "$window", "mainFactory", "$rootScop
         // ...............................................................
         // ...............................................................
 
-        clean = clean.replace(/(<([^>]+)>)/ig,""); // Remove tags
-        clean = clean.replace(/ +(?= )/g,''); // Remove extra whitesapce
+        clean = clean.replace(/(<([^>]+)>)/ig, ""); // Remove tags
+        clean = clean.replace(/ +(?= )/g, ''); // Remove extra whitespace
         clean = clean.replace(/(\r\n|\n|\r)/gm, ""); // Remove line breaks
         clean = clean.trim(); // Trim whitespace
-
         $scope.currentTemplate.TextPart = clean;
-        console.log($scope.currentTemplate);
     };
+
+    $scope.preview = function () {
+        let win = window.open("", "Title", "toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=450,height=800,top=0,left="+(screen.width));
+        win.document.body.innerHTML = $scope.currentTemplate.HtmlPart;
+    }
 
 
 }]);
-
-
-
-
-
-
-
-
-
-
-
-
 
 // end
