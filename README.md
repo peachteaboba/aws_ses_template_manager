@@ -12,8 +12,8 @@ Currently AWS SES has a set of API endpoints to manipulate email templates, howe
 
 3) Install `node_modules` and `bower_components`
 ```
-npm_install
-bower_install
+npm install
+bower install
 ```
 4) Add your AWS IAM credentials
     - Create a new file named `.env` in the project's root directory (same directory as `.env.example`)
@@ -24,6 +24,10 @@ bower_install
 5) Start the server. (Note: You must have your IAM credentials properly set up in the `.env` file for the server to run) To start the server, while in the project's root directory, type the following command:
 ```
 nodemon
+```
+or
+```
+npm start
 ```
 6) Go to `localhost:9000` (enjoy!)
 
